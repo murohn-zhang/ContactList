@@ -117,6 +117,7 @@ public class ContactList {
     // Run function: prints menu options. continually ask for options until user exits (0)
     static int choice;
     public void run() {
+        Scanner input = new Scanner(System.in);
         menu();
         // Exit
         if (choice == 0) {
@@ -125,7 +126,6 @@ public class ContactList {
         // should i give them the option of student / girlscout?
         // Gets information to add a person
         else if (choice == 1) {
-            Scanner input = new Scanner(System.in);
             System.out.println("Enter a first name: ");
             String first = input.nextLine();
             System.out.println("Enter a last name: ");
@@ -155,6 +155,33 @@ public class ContactList {
         }
 
         // Lists students
+        else if (choice == 5) {
+            listStudents();
+        }
+
+        // Search by first name
+        else if (choice == 6) {
+            System.out.println("Enter a first name: ");
+            String first = input.nextLine();
+            Person finder = searchByFirstName(first);
+            System.out.println(finder);
+        }
+
+        // Search by last name
+        else if (choice == 7) {
+            System.out.println("Enter a last name: ");
+            String last = input.nextLine();
+            Person finder = searchByLastName(last);
+            System.out.println(finder);
+        }
+
+        // Search by number
+        else if (choice == 8) {
+            System.out.println("Enter a phone number: ");
+            String num = input.nextLine();
+            Person finder = searchByPhoneNumber(num);
+            System.out.println(finder);
+        }
 
     }
 
