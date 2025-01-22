@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ContactList {
+
     // Instance variable
     private ArrayList<Person> contacts;
 
@@ -112,5 +114,59 @@ public class ContactList {
         }
     }
 
-    // run
+    // Run function: prints menu options. continually ask for options until user exits (0)
+    static int choice;
+    public void run() {
+        menu();
+        // Exit
+        if (choice == 0) {
+            return;
+        }
+        // should i give them the option of student / girlscout?
+        // Gets information to add a person
+        else if (choice == 1) {
+            Scanner input = new Scanner(System.in);
+            System.out.println("Enter a first name: ");
+            String first = input.nextLine();
+            System.out.println("Enter a last name: ");
+            String last = input.nextLine();
+            System.out.println("Enter a number: ");
+            String num = input.nextLine();
+            Person add = new Person(first, last, num);
+            addContact(add);
+        }
+
+        // Sort by first name then print
+        else if (choice == 2) {
+            sort(0);
+            printContacts();
+        }
+
+        // Sort by last name then print
+        else if (choice == 3) {
+            sort(1);
+            printContacts();
+        }
+
+        // Sort by number then print
+        else if (choice == 4) {
+            sort(2);
+            printContacts();
+        }
+
+        // Lists students
+
+    }
+
+    // Prints menu
+    public static void menu() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Menu: \n1. Add Contact\n2. List All Contacts By First Name\n" +
+                "3. List All Contacts By Last Name\n4. List All Contacts By Phone Number\n" +
+                "5. List All Students\n6. Search By First Name\n7. Search By Last Name\n" +
+                "8. Search By Phone Number\n0. Exit");
+        choice = input.nextInt();
+        input.nextLine();
+        return;
+    }
 }
