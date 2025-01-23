@@ -17,8 +17,8 @@ public class ContactList {
     }
 
     // addContacts()
-    public void addContact(Person new) {
-        contacts.add(new);
+    public void addContact(Person added) {
+        contacts.add(added);
     }
 
     // printContacts()
@@ -123,17 +123,35 @@ public class ContactList {
         if (choice == 0) {
             return;
         }
-        // should i give them the option of student / girlscout?
         // Gets information to add a person
         else if (choice == 1) {
-            System.out.println("Enter a first name: ");
-            String first = input.nextLine();
-            System.out.println("Enter a last name: ");
-            String last = input.nextLine();
-            System.out.println("Enter a number: ");
-            String num = input.nextLine();
-            Person add = new Person(first, last, num);
-            addContact(add);
+            String first = null;
+            String last = null;
+            String num = null;
+            System.out.println("Select a type of contact to add:\n" +
+                    "1. Student\n" +
+                    "2. Girl Scout\n");
+            int select = input.nextInt();
+            input.nextLine();
+            // Adds a student
+            if (select == 1) {
+                personInfo(first, last, num);
+                System.out.println("Grade:");
+                int grade = input.nextInt();
+                input.nextLine();
+                Student add = new Student (first, last, num, grade);
+                addContact(add);
+            }
+            // Adds a girl scout
+            else if (select == 2) {
+                personInfo(first, last, num);
+                System.out.println("Cookies sold:");
+                int cookies = input.nextInt();
+                input.nextLine();
+                GirlScout add = new GirlScout (first, last, num, cookies);
+                addContact(add);
+            }
+
         }
 
         // Sort by first name then print
@@ -195,5 +213,19 @@ public class ContactList {
         choice = input.nextInt();
         input.nextLine();
         return;
+    }
+
+    // Get general person info
+    public static void personInfo(String first, String last, String num) {
+        Scanner input = new Scanner(System.in);
+        // Get first name
+        System.out.println("First Name: ");
+        first = input.nextLine();
+        // Get last name
+        System.out.println("Last Name: ");
+        last = input.nextLine();
+        // Get phone number
+        System.out.println("Phone Number: ");
+        num = input.nextLine();
     }
 }
