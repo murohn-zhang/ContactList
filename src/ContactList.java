@@ -1,3 +1,4 @@
+// Contact List by Murohn
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -227,5 +228,10 @@ public class ContactList {
         // Get phone number
         System.out.println("Phone Number: ");
         num = input.nextLine();
+    }
+
+    public static void main(String[] args) {
+        ContactList list = new ContactList();
+        list.run();
     }
 }
